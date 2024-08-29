@@ -1,0 +1,2 @@
+
+Route::post('/licence',[\Marvelous\Licence\Controllers\LicenceController::class,'store']);

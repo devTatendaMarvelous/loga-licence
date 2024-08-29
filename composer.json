@@ -1,0 +1,24 @@
+{
+    "name": "marvelous/loga-licence",
+    "description": "Licence scarfolding for all Laravel Logatech Projects",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "devtatendamarvelous",
+            "email": "marveloustchimusoro@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Marvelous\\Licence\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+        "providers": [
+            "Marvelous\\Licence\\LicenceServiceProvider"
+        ]}
+    }
+}
