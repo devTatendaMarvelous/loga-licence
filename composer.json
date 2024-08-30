@@ -1,16 +1,17 @@
 {
     "name": "marvelous/loga-licence",
-    "description": "Licence scarfolding for all Laravel Logatech Projects",
+    "description": "Licence scaffolding for all Laravel Logatech Projects",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "devtatendamarvelous",
+            "name": " Marvelous Tatenda Chimusoro",
             "email": "marveloustchimusoro@gmail.com"
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.1"
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "autoload": {
         "psr-4": {

@@ -4,21 +4,32 @@ namespace Marvelous\Licence;
 
 use Carbon\Carbon;
 use Marvelous\Licence\Models\Licence as LicenceModel;
+use Marvelous\Licence\Services\ApiService;
 
 class Licence
 {
 
-    public static function checkLicence():void
+    public static function checkLicence(): void
     {
+
         $is_licenced = config('loga-licence.is_licenced');
 
-        if(!$is_licenced){
-
+        if (!$is_licenced) {
             return;
         }
 
+        $licenceType = config('loga-licence.licence_type');
 
-        $licence = LicenceModel::first();
+        if (strtolower( $licenceType) == 'api') {
+            $url = config('loga-licence.licence_url');
+            $appRef = config('loga-licence.app_ref');
+
+            $licence = ApiService::get("$url/api/get-licence/$appRef");
+
+        } else {
+            $licence = LicenceModel::first();
+        }
+
         if (!$licence) {
             // License is invalid or expired, deny access
             abort(403, 'Application Licence Expired ');
@@ -32,7 +43,7 @@ class Licence
 
         if ($date->lessThan($today)) {
             $licence->delete();
-             self::checkLicence();
+            self::checkLicence();
         }
     }
 }
