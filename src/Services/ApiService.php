@@ -9,10 +9,11 @@ class ApiService
 
     public static function get($endpoint)
     {
+
         try {
             $client = new Client();
             $response = $client ->request('GET', $endpoint);
-            $data = json_decode($response->getBody(), true);
+            $data = json_decode($response->getBody(), false);
             return $data;
         } catch (RequestException $e) {
             return null;
@@ -24,7 +25,7 @@ class ApiService
         try {
             $client = new Client();
             $response = $client ->request('POST', $endpoint);
-            $data = json_decode($response->getBody(), true);
+            $data = json_decode($response->getBody(), false);
             return $data;
         } catch (RequestException $e) {
             return null;

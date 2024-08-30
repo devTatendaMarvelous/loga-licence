@@ -23,5 +23,7 @@
         "providers": [
             "Marvelous\\Licence\\LicenceServiceProvider"
         ]}
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

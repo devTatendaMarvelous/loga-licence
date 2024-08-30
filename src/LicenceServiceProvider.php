@@ -4,12 +4,17 @@ namespace Marvelous\Licence;
 
 
 use Illuminate\Support\ServiceProvider;
+use Marvelous\Licence\Commands\LogaLicenceCommand;
 
 class LicenceServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                LogaLicenceCommand::class
+            ]);
+        }
         if (!$this->app['request']->is('api/licence') and $this->app->runningInConsole() === false) {
             Licence::checkLicence();
         }

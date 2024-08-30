@@ -21,19 +21,22 @@ class Licence
         $licenceType = config('loga-licence.licence_type');
 
         if (strtolower( $licenceType) == 'api') {
-            $url = config('loga-licence.licence_url');
+            $url = config('loga-licence.licence_app_url');
             $appRef = config('loga-licence.app_ref');
 
             $licence = ApiService::get("$url/api/get-licence/$appRef");
 
         } else {
             $licence = LicenceModel::first();
-        }
 
-        if (!$licence) {
+        }
+$hasLicence = $licence->licence??null;
+
+        if (!$hasLicence) {
             // License is invalid or expired, deny access
             abort(403, 'Application Licence Expired ');
         }
+
 
         $licenceData = json_decode(base64_decode($licence->licence), false);
 
