@@ -12,40 +12,37 @@ public function handle()
 {
     function appendRouteIfNotExists($stubFilePath, $targetFilePath)
     {
-        // Get the contents of the stub file
+
         $routeLine = file_get_contents($stubFilePath);
 
-        // Get the directory path from the target file path
         $directory = dirname($targetFilePath);
 
 
-        // Check if the directory exists, if not, create it
         if (!is_dir($directory)) {
-            mkdir($directory, 0755, true); // Create directory recursively
+            mkdir($directory, 0755, true);
         }
 
-        // Check if the target file exists
+
         if (!file_exists($targetFilePath)) {
-            // Create the target file and initialize with PHP opening tag
             file_put_contents($targetFilePath, "<?php\n\n");
         }
 
-        // Get the contents of the target file
+
         $targetContents = file_get_contents($targetFilePath);
 
-        // Check if the route line exists in the target file
+
         if (strpos($targetContents, $routeLine) === false) {
-            // Append the route line to the target file
+
             file_put_contents($targetFilePath, PHP_EOL . $routeLine, FILE_APPEND);
-            return true; // Route line was appended
+            return true;
         }
 
-        return false; // Route line already exists
+        return false;
     }
 
-// Usage
-    $stubFilePath = __DIR__.'/../stubs/api-routes.stub'; // Update with the actual path to the stub file
-    $targetFilePath = base_path( 'routes/api.php'); // Update with the actual path to the target file
+
+    $stubFilePath = __DIR__.'/../stubs/api-routes.stub';
+    $targetFilePath = base_path( 'routes/api.php');
 
     if (appendRouteIfNotExists($stubFilePath, $targetFilePath)) {
         echo "Route has been appended to the target file.";

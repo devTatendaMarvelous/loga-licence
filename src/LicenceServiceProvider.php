@@ -15,9 +15,10 @@ class LicenceServiceProvider extends ServiceProvider
                 LogaLicenceCommand::class
             ]);
         }
-        if (!$this->app['request']->is('api/licence') and $this->app->runningInConsole() === false) {
-            Licence::checkLicence();
-        }
+//        if ($this->app['request']->is('api/licence')) {
+//            $id = $this->app['request']->input('id');
+//            Licence::createLicence($id);
+//        }
 
         $this->packagePublishes();
 

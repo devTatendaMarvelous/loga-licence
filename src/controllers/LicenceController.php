@@ -13,14 +13,15 @@ class LicenceController extends Controller
      */
     public function store(Request $request)
     {
-        $licence = new Licence();
-        $licence->model_id = $request->model_id ?? null;
-        $licence->model = $request->model ?? null;
-        $licence->licence_key = $request->licence_key;
-        $licence->licence = $request->licence;
-        $licence->save();
 
-        return response()->json(['message' => 'success', 'data' => $licence->id], 201);
+        if($request->filled('model_id')) {
+
+            $licence = \Marvelous\Licence\Licence::createLicence($request->model_id);
+
+            return response()->json(['message' => 'success', 'data' => $licence], 201);
+        }else{
+            return response()->json(['message' => 'Error', 'errors' => "model_id Is required"], 400);
+        }
     }
 
 

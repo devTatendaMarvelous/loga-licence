@@ -3,9 +3,10 @@
     "description": "Licence scaffolding for all Laravel Logatech Projects",
     "type": "library",
     "license": "MIT",
+    "version": "1.0.1",
     "authors": [
         {
-            "name": " Marvelous Tatenda Chimusoro",
+            "name": "Marvelous Tatenda Chimusoro",
             "email": "marveloustchimusoro@gmail.com"
         }
     ],
@@ -20,9 +21,10 @@
     },
     "extra": {
         "laravel": {
-        "providers": [
-            "Marvelous\\Licence\\LicenceServiceProvider"
-        ]}
+            "providers": [
+                "Marvelous\\Licence\\LicenceServiceProvider"
+            ]
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true
